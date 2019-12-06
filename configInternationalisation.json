@@ -1,0 +1,405 @@
+{
+  "type": "object",
+  "properties": {
+    "producer": {
+      "type": "object",
+      "mandatory": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "mandatory": true
+        },
+        "description": {
+          "type": "string",
+          "mandatory": true
+        },
+        "objectives": {
+          "type": "string",
+          "mandatory": false
+        },
+        "measuredVariables": {
+          "type": "string",
+          "mandatory": false
+        },
+        "title": {
+          "type": "string",
+          "mandatory": true
+        },
+        "contacts": {
+          "type": "array",
+          "mandatory": true,
+          "items": {
+            "type": "object",
+            "mandatory": true,
+            "properties": {
+              "organisation": {
+                "type": "object",
+                "mandatory": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "mandatory": false
+                  }
+                }
+              },
+              "name": {
+                "type": "string",
+                "mandatory": false
+              }
+            }
+          }
+        },
+        "fundings": {
+          "type": "array",
+          "mandatory": true,
+          "items": {
+            "type": "object",
+            "mandatory": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "mandatory": false
+              }
+            }
+          }
+        },
+        "onlineResource": {
+          "type": "object",
+          "mandatory": false,
+          "properties": {
+            "urlDownload": {
+              "type": "string",
+              "mandatory": false
+            },
+            "urlInfo": {
+              "type": "string",
+              "mandatory": false
+            },
+            "webservices": {
+              "type": "array",
+              "mandatory": false,
+              "items": {
+                "type": "object",
+                "mandatory": true,
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "mandatory": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "mandatory": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "datasets": {
+      "type": "array",
+      "mandatory": true,
+      "items": {
+        "type": "object",
+        "mandatory": true,
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "mandatory": true,
+            "properties": {
+              "title": {
+                "type": "string",
+                "mandatory": true
+              },
+              "description": {
+                "type": "string",
+                "mandatory": true
+              },
+              "objective": {
+                "type": "string",
+                "mandatory": false
+              },
+              "datasetLineage": {
+                "type": "string",
+                "mandatory": true
+              },
+              "keywords": {
+                "type": "array",
+                "mandatory": false,
+                "items": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "keyword": {
+                      "type": "string",
+                      "mandatory": true
+                    }
+                  }
+                }
+              },
+              "documents": {
+                "type": "array",
+                "mandatory": false,
+                "items": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "mandatory": true
+                    }
+                  }
+                }
+              },
+              "contacts": {
+                "type": "array",
+                "mandatory": true,
+                "items": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "organisation": {
+                      "type": "object",
+                      "mandatory": false,
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "mandatory": false
+                        }
+                      }
+                    },
+                    "name": {
+                      "type": "string",
+                      "mandatory": false
+                    }
+                  }
+                }
+              },
+              "dataConstraint": {
+                "type": "object",
+                "mandatory": true,
+                "properties": {
+                  "accessUseConstraint": {
+                    "type": "string",
+                    "mandatory": true
+                  },
+                  "urlDataPolicy": {
+                    "type": "string",
+                    "mandatory": false
+                  }
+                }
+              },
+              "onlineResource": {
+                "type": "object",
+                "mandatory": false,
+                "properties": {
+                  "urlDownload": {
+                    "type": "string",
+                    "mandatory": false
+                  },
+                  "urlInfo": {
+                    "type": "string",
+                    "mandatory": false
+                  },
+                  "webservices": {
+                    "type": "array",
+                    "mandatory": false,
+                    "items": {
+                      "type": "object",
+                      "mandatory": true,
+                      "properties": {
+                        "description": {
+                          "type": "string",
+                          "mandatory": true
+                        },
+                        "url": {
+                          "type": "string",
+                          "mandatory": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "observations": {
+            "type": "array",
+            "mandatory": true,
+            "items": {
+              "type": "object",
+              "mandatory": true,
+              "properties": {
+                "observedProperty": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "mandatory": true
+                    },
+                    "unit": {
+                      "type": "string",
+                      "mandatory": true
+                    },
+                    "description": {
+                      "type": "string",
+                      "mandatory": false
+                    }
+                  }
+                },
+                "procedure": {
+                  "type": "object",
+                  "mandatory": false,
+                  "properties": {
+                    "lineageInformations": {
+                      "type": "array",
+                      "mandatory": false,
+                      "items": {
+                        "type": "object",
+                        "mandatory": true,
+                        "properties": {
+                          "processingDescription": {
+                            "type": "string",
+                            "mandatory": true
+                          }
+                        }
+                      }
+                    },
+                    "dataProduction": {
+                      "type": "object",
+                      "mandatory": false,
+                      "properties": {
+                        "method": {
+                          "type": "string",
+                          "mandatory": false
+                        },
+                        "sensors": {
+                          "type": "array",
+                          "mandatory": false,
+                          "items": {
+                            "type": "object",
+                            "mandatory": true,
+                            "properties": {
+                              "sensorType": {
+                                "type": "string",
+                                "mandatory": false
+                              },
+                              "documents": {
+                                "type": "array",
+                                "mandatory": false,
+                                "items": {
+                                  "type": "object",
+                                  "mandatory": true,
+                                  "properties": {
+                                    "url": {
+                                      "type": "string",
+                                      "mandatory": true
+                                    }
+                                  }
+                                }
+                              },
+                              "calibration": {
+                                "type": "string",
+                                "mandatory": false
+                              },
+                              "name": {
+                                "type": "string",
+                                "mandatory": false
+                              },
+                              "parametrisationDescription": {
+                                "type": "string",
+                                "mandatory": false
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "result": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "dataFile": {
+                      "type": "object",
+                      "mandatory": true,
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "mandatory": true
+                        }
+                      }
+                    },
+                    "qualityFlags": {
+                      "type": "array",
+                      "mandatory": false,
+                      "items": {
+                        "type": "object",
+                        "mandatory": true,
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "mandatory": true
+                          },
+                          "description": {
+                            "type": "string",
+                            "mandatory": true
+                          }
+                        }
+                      }
+                    },
+                    "additionalValues": {
+                      "type": "array",
+                      "mandatory": false,
+                      "items": {
+                        "type": "object",
+                        "mandatory": true,
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "mandatory": true
+                          },
+                          "columnName": {
+                            "type": "string",
+                            "mandatory": true
+                          },
+                          "unit": {
+                            "type": "string",
+                            "mandatory": false
+                          },
+                          "description": {
+                            "type": "string",
+                            "mandatory": false
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "featureOfInterest": {
+                  "type": "object",
+                  "mandatory": true,
+                  "properties": {
+                    "samplingFeature": {
+                      "type": "object",
+                      "mandatory": true,
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "mandatory": false
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

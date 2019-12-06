@@ -1,0 +1,45 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id":"${JSON_SCHEMA_API_URL}root_schema_i18n.json",
+	"type": "object",
+	"required": [
+		"_id",
+		"documentId",
+		"version",
+		"producer",
+		"dataset",
+		"observation"
+	],
+	"properties":{
+		"_id":{
+			"type": "object",
+			"required":[
+				"$oid"
+			],
+			"properties":{
+				"$oid": {
+					"type":"string",
+					"pattern":"^(.*)$"
+				}
+			}
+		},
+		"documentId":{
+			"type":"string"
+		},
+		"version":{
+			"type":"string"
+		},
+		"producer":{
+			"type":"object",
+			"$ref":"provider_schema_i18n.json"
+		},
+		"dataset":{
+			"type":"object",
+			"$ref":"dataset_schema_i18n.json"
+		},
+		"observation":{
+			"type":"object",
+			"$ref":"observation_schema_i18n.json"
+		}
+	}
+}

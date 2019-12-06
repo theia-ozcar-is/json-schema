@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id":"${JSON_SCHEMA_API_URL}root_schema.json",
+  "type":"object",
+  "required":["version","producer","datasets"],
+  "additionalProperties":false,
+  "properties":{
+  	"version":{
+  		"type":"string",
+  		"format":"^[0-9]{1,2}.[0-9]{1,2}.[0-9]{1,2}$"
+  	},
+  	"producer":{
+  		"type":"object",
+  		"$ref": "provider_schema.json"
+  	},
+  	"datasets":{
+  	  	"type": "array",
+  		"$ref": "datasets_schema.json"
+  	}
+  }
+}

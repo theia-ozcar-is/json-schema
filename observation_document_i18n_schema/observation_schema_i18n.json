@@ -1,0 +1,768 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "${JSON_SCHEMA_API_URL}observation_schema_i18n.json",
+  "definitions": {
+    "type": "object",
+    "required": [
+      "observationId",
+      "dataType",
+      "temporalExtent",
+      "timeSerie",
+      "featureOfInterest",
+      "observedProperty",
+      "result"
+    ],
+    "additionalProperties": false,
+      "properties": {
+        "observationId": {
+          "type": "string",
+          "pattern": "^[A-Z]{4}_OBS_.{1,}$"
+        },
+        "processingLevel": {
+          "enum": [
+            "Raw data",
+            "Quality-controlled data",
+            "Derived products"
+          ]
+        },
+        "temporalExtent": {
+          "type": "object",
+          "required": [
+            "dateBeg",
+            "dateEnd"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "dateBeg": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "dateEnd": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        },
+        "timeSerie": {
+          "type": "boolean"
+        },
+        "dataType": {
+          "enum": [
+            "Numeric",
+            "Vector",
+            "Raster",
+            "Photo",
+            "Video",
+            "Text",
+            "Audio",
+            "Other"
+          ]
+        },
+        "featureOfInterest": {
+          "type": "object",
+          "required": [
+            "samplingFeature"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "samplingFeature": {
+              "type": "object",
+              "required": [
+                "type",
+                "properties",
+                "geometry"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type":"array",
+                  "$ref":"simple_string_i18n.json"
+                },
+                "type": {
+                  "enum": [
+                    "Feature"
+                  ]
+                },
+                "properties": {
+                  "type": "object"
+                },
+                "geometry": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "Point"
+                          ]
+                        },
+                        "coordinates": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number",
+                                  "minimum": -180,
+                                  "maximum": 180
+                                },
+                                {
+                                  "type": "number",
+                                  "minimum": -90,
+                                  "maximum": 90
+                                },
+                                {
+                                  "type": "number"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "array",
+                              "items": [
+                                {
+                                  "type": "number",
+                                  "minimum": -180,
+                                  "maximum": 180
+                                },
+                                {
+                                  "type": "number",
+                                  "minimum": -90,
+                                  "maximum": 90
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "LineString"
+                          ]
+                        },
+                        "coordinates": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "minItems": 2,
+                              "items": {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "number",
+                                    "minimum": -180,
+                                    "maximum": 180
+                                  },
+                                  {
+                                    "type": "number",
+                                    "minimum": -90,
+                                    "maximum": 90
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "array",
+                              "minItems": 2,
+                              "items": {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "number",
+                                    "minimum": -180,
+                                    "maximum": 180
+                                  },
+                                  {
+                                    "type": "number",
+                                    "minimum": -90,
+                                    "maximum": 90
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "MultiPoint"
+                          ]
+                        },
+                        "coordinates": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "minItems": 1,
+                              "items": {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "number",
+                                    "minimum": -180,
+                                    "maximum": 180
+                                  },
+                                  {
+                                    "type": "number",
+                                    "minimum": -90,
+                                    "maximum": 90
+                                  },
+                                  {
+                                    "type": "number"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "array",
+                              "minItems": 1,
+                              "items": {
+                                "type": "array",
+                                "items": [
+                                  {
+                                    "type": "number",
+                                    "minimum": -180,
+                                    "maximum": 180
+                                  },
+                                  {
+                                    "type": "number",
+                                    "minimum": -90,
+                                    "maximum": 90
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "MultiLineString"
+                          ]
+                        },
+                        "coordinates": {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "anyOf": [
+                              {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "number",
+                                      "minimum": -180,
+                                      "maximum": 180
+                                    },
+                                    {
+                                      "type": "number",
+                                      "minimum": -90,
+                                      "maximum": 90
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "type": "array",
+                                "minItems": 2,
+                                "items": {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "number",
+                                      "minimum": -180,
+                                      "maximum": 180
+                                    },
+                                    {
+                                      "type": "number",
+                                      "minimum": -90,
+                                      "maximum": 90
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "Polygon"
+                          ]
+                        },
+                        "coordinates": {
+                          "type": "array",
+                          "minItems": 1,
+                          "maxItems": 1,
+                          "items": {
+                            "type": "array",
+                            "minItems": 3,
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "number",
+                                      "minimum": -180,
+                                      "maximum": 180
+                                    },
+                                    {
+                                      "type": "number",
+                                      "minimum": -90,
+                                      "maximum": 90
+                                    },
+                                    {
+                                      "type": "number"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "array",
+                                  "items": [
+                                    {
+                                      "type": "number",
+                                      "minimum": -180,
+                                      "maximum": 180
+                                    },
+                                    {
+                                      "type": "number",
+                                      "minimum": -90,
+                                      "maximum": 90
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "coordinates",
+                        "type"
+                      ],
+                      "properties": {
+                        "type": {
+                          "enum": [
+                            "MultiPolygon"
+                          ]
+                        },
+                        "coordinates": {
+                          "type": "array",
+                          "minItems": 1,
+                          "items": {
+                            "type": "array",
+                            "minItems": 1,
+                            "maxItems": 1,
+                            "items": {
+                              "type": "array",
+                              "minItems": 3,
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "array",
+                                    "items": [
+                                      {
+                                        "type": "number",
+                                        "minimum": -180,
+                                        "maximum": 180
+                                      },
+                                      {
+                                        "type": "number",
+                                        "minimum": -90,
+                                        "maximum": 90
+                                      },
+                                      {
+                                        "type": "number"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "array",
+                                    "items": [
+                                      {
+                                        "type": "number",
+                                        "minimum": -180,
+                                        "maximum": 180
+                                      },
+                                      {
+                                        "type": "number",
+                                        "minimum": -90,
+                                        "maximum": 90
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "observedProperty": {
+          "type": "object",
+          "required": [
+            "name",
+            "theiaCategories"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "type":"array",
+              "$ref":"simple_string_i18n.json"
+            },
+            "unit": {
+              "type":"array",
+              "$ref":"simple_string_i18n.json"
+            },
+            "description": {
+              "type":"array",
+              "$ref":"simple_string_i18n.json"
+            },
+            "theiaCategories": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "gcmdKeywords": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "category",
+                  "topic"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "category": {
+                    "type": "string"
+                  },
+                  "topic": {
+                    "type": "string"
+                  },
+                  "term": {
+                    "type": "string"
+                  },
+                  "variableLevel1": {
+                    "type": "string"
+                  },
+                  "variableLevel2": {
+                    "type": "string"
+                  },
+                  "variableLevel3": {
+                    "type": "string"
+                  },
+                  "uuid": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "procedure": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "lineageInformation": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "processingDescription"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "processingDescription": {
+                    "type":"array",
+                    "$ref":"simple_string_i18n.json"
+                  },
+                  "processingDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  }
+                }
+              }
+            },
+            "dataProduction": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "method": {
+                  "type":"array",
+                  "$ref":"simple_string_i18n.json"
+                },
+                "sensors": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "required": [
+                          "model",
+                          "manufacturer"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "model": {
+                            "type": "string"
+                          },
+                          "manufacturer": {
+                            "type": "string"
+                          },
+                          "serialNumber": {
+                            "type": "string"
+                          },
+                          "sensorType": {
+                            "type":"array",
+                            "$ref":"simple_string_i18n.json"
+                          },
+                          "calibration": {
+                            "type":"array",
+                            "$ref":"simple_string_i18n.json"
+                          },
+                          "documents": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "type",
+                                "url"
+                              ],
+                              "properties": {
+                                "type": {
+                                  "enum": [
+                                    "Publication",
+                                    "Manual"
+                                  ]
+                                },
+                                "url": {
+                                  "type":"array",
+                                  "$ref":"uri_string_i18n.json"
+                                }
+                              }
+                            }
+                          },
+                          "activityPeriods": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "required": [
+                                "dateBeg",
+                                "dateEnd"
+                              ],
+                              "additionalProperties": false,
+                              "properties": {
+                                "dateBeg": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "dateEnd": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "name",
+                          "parametrisationDescription"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                          "name": {
+                            "type":"array",
+                            "$ref":"simple_string_i18n.json"
+                          },
+                          "parametrisationDescription": {
+                            "type":"array",
+                            "$ref":"simple_string_i18n.json"
+                          },
+                          "documents": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                              "type": "object",
+                              "additionalProperties": false,
+                              "required": [
+                                "type",
+                                "url"
+                              ],
+                              "properties": {
+                                "type": {
+                                  "enum": [
+                                    "Publication",
+                                    "Manual"
+                                  ]
+                                },
+                                "url": {
+                                  "type":"array",
+                                  "$ref":"uri_string_i18n.json"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "result": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "dataFile"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "dataFile": {
+                  "type": "object",
+                  "required": [
+                    "name"
+                  ],
+                  "properties": {
+                    "name": {
+                      "type":"array",
+                      "$ref":"simple_string_i18n.json"
+                    }
+                  }
+                },
+                "missingValue": {
+                  "type": "string"
+                },
+                "additionalValues": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "name",
+                      "columnName"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "name": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      },
+                      "columnName": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      },
+                      "unit": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      },
+                      "description": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      }
+                    }
+                  }
+                },
+                "qualityFlags": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "required": [
+                      "code",
+                      "description"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                      "code": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      },
+                      "description": {
+                        "type":"array",
+                        "$ref":"simple_string_i18n.json"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+  "type": "object",
+  "$ref": "#/definitions"
+}

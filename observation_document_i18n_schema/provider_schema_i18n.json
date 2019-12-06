@@ -1,0 +1,390 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "${JSON_SCHEMA_API_URL}provider_schema_i18n.json",
+  "definitions": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "producerId",
+      "title",
+      "name",
+      "description",
+      "fundings",
+      "contacts"
+    ],
+    "properties": {
+      "producerId": {
+        "type": "string",
+        "pattern": "^[A-Z]{4}$"
+      },
+      "name": {
+        "type": "array",
+        "$ref": "simple_string_i18n.json"
+      },
+      "title": {
+        "type": "array",
+        "$ref": "simple_string_i18n.json"
+      },
+      "description": {
+        "type": "array",
+        "$ref": "simple_string_i18n.json"
+      },
+      "objectives": {
+        "type": "array",
+        "$ref": "simple_string_i18n.json"
+      },
+      "measuredVariables": {
+        "type": "array",
+        "$ref": "simple_string_i18n.json"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "contacts": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "firstName",
+            "lastName",
+            "email",
+            "role"
+          ],
+          "properties": {
+            "firstName": {
+              "type": "string"
+            },
+            "lastName": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "role": {
+              "enum": [
+                "Project leader",
+                "Data manager"
+              ]
+            },
+            "orcId": {
+              "type": "string"
+            },
+            "organisation": {
+              "anyOf": [{
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "role",
+                    "acronym",
+                    "name",
+                    "iso3166"
+                  ],
+                  "properties": {
+                    "role": {
+                      "enum": [
+                        "Research group"
+                      ]
+                    },
+                    "acronym": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "array",
+                      "$ref": "simple_string_i18n.json"
+                    },
+                    "idScanR": {
+                      "type": "string"
+                    },
+                    "iso3166": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "role",
+                    "acronym",
+                    "iso3166"
+                  ],
+                  "properties": {
+                    "role": {
+                      "enum": [
+                        "Research group"
+                      ]
+                    },
+                    "acronym": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "array",
+                      "$ref": "simple_string_i18n.json"
+                    },
+                    "idScanR": {
+                      "type": "string"
+                    },
+                    "iso3166": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "role",
+                    "name",
+                    "iso3166"
+                  ],
+                  "properties": {
+                    "role": {
+                      "enum": [
+                        "Research group"
+                      ]
+                    },
+                    "acronym": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "array",
+                      "$ref": "simple_string_i18n.json"
+                    },
+                    "idScanR": {
+                      "type": "string"
+                    },
+                    "iso3166": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "idScanR"
+                  ],
+                  "properties": {
+                    "role": {
+                      "enum": [
+                        "Research group"
+                      ]
+                    },
+                    "acronym": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "array",
+                      "$ref": "simple_string_i18n.json"
+                    },
+                    "idScanR": {
+                      "type": "string"
+                    },
+                    "iso3166": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "fundings": {
+        "type": "array",
+        "items": {
+          "anyOf": [{
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "acronym",
+                "name",
+                "iso3166"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "French research institutes",
+                    "French universities and schools",
+                    "Other research institutes",
+                    "Other universities and schools",
+                    "Research unit",
+                    "Federative structure",
+                    "Research program",
+                    "Other"
+                  ]
+                },
+                "acronym": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "array",
+                  "$ref": "simple_string_i18n.json"
+                },
+                "idScanR": {
+                  "type": "string"
+                },
+                "iso3166": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "name",
+                "iso3166"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "French research institutes",
+                    "French universities and schools",
+                    "Other research institutes",
+                    "Other universities and schools",
+                    "Research unit",
+                    "Federative structure",
+                    "Research program",
+                    "Other"
+                  ]
+                },
+                "acronym": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "array",
+                  "$ref": "simple_string_i18n.json"
+                },
+                "idScanR": {
+                  "type": "string"
+                },
+                "iso3166": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "type",
+                "acronym",
+                "iso3166"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "French research institutes",
+                    "French universities and schools",
+                    "Other research institutes",
+                    "Other universities and schools",
+                    "Research unit",
+                    "Federative structure",
+                    "Research program",
+                    "Other"
+                  ]
+                },
+                "acronym": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "array",
+                  "$ref": "simple_string_i18n.json"
+                },
+                "idScanR": {
+                  "type": "string"
+                },
+                "iso3166": {
+                  "type": "string"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "idScanR"
+              ],
+              "properties": {
+                "type": {
+                  "enum": [
+                    "French research institutes",
+                    "French universities and schools",
+                    "Other research institutes",
+                    "Other universities and schools",
+                    "Research unit",
+                    "Federative structure",
+                    "Research program",
+                    "Other"
+                  ]
+                },
+                "acronym": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "array",
+                  "$ref": "simple_string_i18n.json"
+                },
+                "idScanR": {
+                  "type": "string"
+                },
+                "iso3166": {
+                  "type": "string"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "onlineResource": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "urlDownload": {
+            "type": "array",
+            "$ref": "uri_string_i18n.json"
+          },
+          "urlInfo": {
+            "type": "array",
+            "$ref": "uri_string_i18n.json"
+          },
+          "doi": {
+            "type": "string",
+            "pattern": "10.\\d{4,9}/[-._;()/:A-Z0-9]+|10.1002/[^\\s]+|10.\\d{4}/\\d+-\\d+X?(\\d+)\\d+<[\\d\\w]+:[\\d\\w]*>\\d+.\\d+.\\w+;\\d"
+          },
+          "webservices": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "description",
+                "url"
+              ],
+              "properties": {
+                "description": {
+                  "type": "array",
+                  "$ref": "simple_string_i18n.json"
+                },
+                "url": {
+                  "type": "array",
+                  "$ref": "uri_string_i18n.json"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "$ref": "#/definitions"
+}
